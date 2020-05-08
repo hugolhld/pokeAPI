@@ -1,16 +1,16 @@
 <?php
-    include('./config.php');
-    include('./header.php');
-    $url = 'https://pokeapi.co/api/v2/pokemon';
+    include('./includes/config.php');
+    include('./includes/header.php');
+    // $url = 'https://pokeapi.co/api/v2/pokemon';
     $limit = '?limit=807/';
-    $data = file_get_contents($url.$limit);
+    $data = file_get_contents(BASE_URL.$limit);
     $data = json_decode($data);
     // echo '<pre>';
     // // print_r($data->results);
     // print_r(json_decode(file_get_contents('https://pokeapi.co/api/v2/pokemon/25/')));
     // echo '</pre>';
     $alhabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
+    $letterActive = empty($_GET['letter']) ? 'a' : $_GET['letter'];
 ?>
 
         <section class="section__alphabet">
@@ -27,31 +27,29 @@
                 $sortPokemonName =[];
                 foreach($data->results as $key => $result)
                 {
-                    array_push($sortPokemonName, $result->name);
+                    if(substr($result->name, 0, 1) == $letterActive)
+                    {
+                        array_push($sortPokemonName, $result->name);
+                    }
                     asort($sortPokemonName);
                 }
                 foreach($sortPokemonName as $pokemonName):
             ?>
-                <?php if(substr($pokemonName, 0, 1) == $_GET['letter']): ?>
                     <?php
                         
-                        $urlPokemon = $url.'/'.$pokemonName;
+                        $urlPokemon = BASE_URL.'/'.$pokemonName;
                         $dataPokemon = json_decode(file_get_contents($urlPokemon));
                         $idPokemon = $dataPokemon->id;
                     ?>
-                    <a href="pokemon.php/?id=<?= $idPokemon ?>" class="result__item">
+                    <a href="pokemon.php?id=<?= $idPokemon ?>" class="result__item">
                         <img src="<?= empty($idPokemon) ? null : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$idPokemon.png"?>" alt="">
                         <p> <?= ucfirst($pokemonName) ?> </p>
                     </a>
-                <?php endif; ?>
             <? 
                 endforeach;
-                $sortPokemonName = null
             ?>
             </div>
         </section>
-    </main>
-
-    
-</body>
-</html>
+<?php
+    include('./includes/footer.php');
+?>

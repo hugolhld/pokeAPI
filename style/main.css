@@ -1,0 +1,106 @@
+body, html
+{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header
+{
+    /* width: 100vw; */
+    height: 20vh;
+    color: #fff;
+    background: rgb(197, 54, 54);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section__form
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form
+{
+    padding: 5%;
+}
+
+input
+{
+    width: 30vw;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 30px;
+    font-size: 1em;
+}
+
+button
+{
+    padding: 20px;
+    background: none;
+    border: 1px solid #000;
+    border-radius: 30px;
+    font-size: 1em;
+}
+
+.section__alphabet
+{
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.button
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 10vh 0;
+}
+
+.button__alphabet
+{
+    font-size: 1.5em;
+    background: rgb(114, 114, 114);
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.test
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    background: rgb(114, 114, 114);
+    border-right: 1px solid rgb(92, 91, 91);
+    text-decoration: none;
+}
+
+.result__item
+{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.3em;
+    border-top: 1px solid #000;
+    text-decoration: none;
+}
+
+.result__item p
+{
+    padding: 0 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.result__item img
+{
+    width: 100px;
+    height: auto;
+    padding: 0 10px;
+}

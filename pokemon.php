@@ -6,10 +6,16 @@
 
     $data = json_decode(@file_get_contents(BASE_URL.'/'.$dataID.'/'));
 
-    echo '<pre>';
-    print_r($data);
-    echo '</pre>';
-    exit;
+    if($data)
+    {
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
+    }
+    else
+    {
+        echo 'No result for this name';
+    }
 ?>
 
 

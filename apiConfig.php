@@ -6,7 +6,7 @@
         public function getDataAlphabeticIndex($limit, $letterActive)
         {
             $sortAlphabeticName =[];
-            $data = $this->callAPI("pokemon?limit=$limit/");
+            $data = $this->useCache("pokemon?limit=$limit/");
             foreach($data->results as $key => $result)
             {
                 if(substr($result->name, 0, 1) == $letterActive)
@@ -20,7 +20,7 @@
 
         public function getDataObject($type, $object)
         {
-            $data = $this->callAPI("$type/$object/");
+            $data = $this->useCache("$type/$object/");
             return $data;
         }
 
@@ -37,6 +37,27 @@
             if($data === null || curl_getinfo($curl, CURLINFO_HTTP_CODE !== 200))
             {
                 return 'Aucun résultat';
+            }
+            curl_close($curl);
+            // return json_decode($data);
+            return $data;
+        }
+
+        private function useCache($type)
+        {
+            $cacheKey = md5("https://pokeapi.co/api/v2/$type");
+            $path = './cache/'.$cacheKey;
+            $fromCache = false;
+            $data;
+            if(file_exists($path))
+            {
+                $data = file_get_contents($path);
+                $fromCache = true;
+            }
+            else
+            {
+                $data = $this->callAPI($type);
+                file_put_contents($path, $data);
             }
             return json_decode($data);
         }

@@ -1,15 +1,17 @@
 <?php
     include('./includes/config.php');
     include('./includes/header.php');
+    include('./apiConfig.php');
+    $data = new pokeAPI();
+    $dataID = $data->getDataObject('pokemon', $_GET['id']);
+    // $dataID = $_GET['id'];
 
-    $dataID = $_GET['id'];
+    // $data = json_decode(@file_get_contents(BASE_URL.'/'.$dataID.'/'));
 
-    $data = json_decode(@file_get_contents(BASE_URL.'/'.$dataID.'/'));
-
-    if($data)
+    if($dataID)
     {
         echo '<pre>';
-        print_r($data);
+        print_r($dataID);
         echo '</pre>';
     }
     else
@@ -20,6 +22,4 @@
 
 
 
-<?php
-    include('./includes/footer.php');
-?>
+<?php include('./includes/footer.php'); ?>

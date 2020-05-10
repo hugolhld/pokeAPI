@@ -11,25 +11,29 @@
         <section class="section__alphabet">
             <h2>Or search alphabetically</h2>
             <div class="button">
+
                 <?php foreach($alhabet as $key => $letter): ?>
-                    <a href="?letter=<?= $alhabet[$key] ?>" class="test">
+
+                    <a href="?letter=<?= urlencode($alhabet[$key]) ?>" class="test">
                         <p class="button__alphabet"> <?= $letter ?> </p>
                     </a>
+
                 <?php endforeach; ?>
+
             </div>
             <div class="result__alphabet">
 
             <?php foreach($sortPokemonName as $pokemonName): ?>
 
-                    <?php
-                        $dataPokemon = $data->getDataObject('pokemon', $pokemonName);
-                        $idPokemon = $dataPokemon->id;
-                    ?>
+                <?php
+                    $dataPokemon = $data->getDataObject('pokemon', $pokemonName);
+                    $idPokemon = $dataPokemon->id;
+                ?>
 
-                    <a href="pokemon.php?id=<?= $idPokemon ?>" class="result__item">
-                        <img src="<?= empty($idPokemon) ? null : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$idPokemon.png" ?>" alt="">
-                        <p> <?= ucfirst($pokemonName) ?> </p>
-                    </a>
+                <a href="pokemon.php?id=<?= urlencode($idPokemon) ?>" class="result__item">
+                    <img src="<?= empty($idPokemon) ? null : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$idPokemon.png" ?>" alt="">
+                    <p> <?= ucfirst($pokemonName) ?> </p>
+                </a>
 
             <? endforeach; ?> 
 

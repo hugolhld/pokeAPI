@@ -46,9 +46,15 @@
         private function useCache($type, $addAllObject)
         {
             $cacheKey = md5("https://pokeapi.co/api/v2/$type");
-            $path = './cache/'.$cacheKey;
+            $pathOrigin = './cache';
+            $path = $pathOrigin.'/'.$cacheKey;
             $data;
             $addAllObject = true;
+
+            if(!is_dir($pathOrigin))
+            {
+                mkdir($pathOrigin);
+            }
 
             if(file_exists($path))
             {

@@ -62,7 +62,7 @@ button
 {
     display: flex;
     justify-content: space-around;
-    padding: 10vh 0;
+    padding-top: 10vh;
 }
 
 .button__alphabet
@@ -86,14 +86,25 @@ button
     text-decoration: none;
 }
 
+.result__alphabet
+{
+    border: 1px solid rgb(114, 114, 114);
+    border-top: none;
+}
+
 .result__item
 {
     padding: 10px 0;
     display: flex;
     align-items: center;
     font-size: 1.3em;
-    border-top: 1px solid #000;
+    border-top: 1px solid rgb(114, 114, 114);
     text-decoration: none;
+}
+
+.result__item:nth-child(1)
+{
+    border: none;
 }
 
 .result__item p
@@ -108,4 +119,20 @@ button
     width: 100px;
     height: auto;
     padding: 0 10px;
+}
+
+footer
+{
+    border-top: 1px solid #000
+}
+
+footer p
+{
+    text-align: center;
+}
+
+footer p span
+{
+    background: #C4C4C4;
+    padding: 2px;
 }

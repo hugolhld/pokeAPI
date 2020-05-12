@@ -1,3 +1,5 @@
+<?php $time = microtime(TRUE) ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

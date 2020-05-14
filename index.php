@@ -31,7 +31,7 @@
                 ?>
 
                 <a href="pokemon.php?id=<?= urlencode($idPokemon) ?>" class="result__item">
-                    <img src="<?= empty($idPokemon) ? null : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$idPokemon.png" ?>" alt="">
+                    <img src="<?= empty($idPokemon) ? null : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$idPokemon.png" ?>" alt="<?= $pokemonName ?>">
                     <p> <?= ucfirst($pokemonName) ?> </p>
                 </a>
 

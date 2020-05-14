@@ -1,11 +1,22 @@
 <?php
     class pokeAPI
     {
+
+        public function getAttackDescription($attack)
+        {
+            $data = $this->useCache("move/$attack/", true);
+            $data = $data->flavor_text_entries[2]->flavor_text;
+
+            return $data;
+        }
+
         public function getDataAlphabeticIndex($limit, $letterActive)
         {
             $sortAlphabeticName =[];
             $data = $this->callAPI("pokemon?limit=$limit/");
             $data = json_decode($data);
+            $dataArray = [];
+
             foreach($data->results as $key => $result)
             {
                 if(substr($result->name, 0, 1) == $letterActive)
@@ -14,6 +25,7 @@
                 }
                 asort($sortAlphabeticName);
             }
+
             $this->useCache(/* string($sortAlphabeticName) */'test', false);
             return $sortAlphabeticName;
         }
@@ -32,6 +44,7 @@
                 CURLOPT_URL => "https://pokeapi.co/api/v2/$type",
                 CURLOPT_RETURNTRANSFER => true,
             ]);
+
             $data = curl_exec($curl);
 
             if($data === null || curl_getinfo($curl, CURLINFO_HTTP_CODE !== 200))

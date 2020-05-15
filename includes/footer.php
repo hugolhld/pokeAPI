@@ -4,5 +4,10 @@
         </p>
     </footer>
     </main>
+    <?php if($_SERVER['SCRIPT_NAME'] == '/game.php'): ?>
+
+        <script src="../assets/js/game.js"></script>
+
+    <?php endif; ?>
 </body>
 </html>

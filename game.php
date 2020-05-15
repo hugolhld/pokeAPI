@@ -5,16 +5,7 @@
     $data = new pokeAPI;
     $dataResult = $data->getDataObject('pokemon', rand(1, 807))->name;
     $dataResultWin = rand(1,2);
-    $dataResultLoos;
-    if($dataResultWin === 1)
-    {
-        $dataResultLoos = 2;
-    }
-    else
-    {
-        $dataResultLoos = 1;
-    }
-    function test($o){ $dataResult = $o ;}
+    $dataResultLoos = $dataResultWin === 1 ? 2 : 1;
 ?>
 
     <div class="name">
@@ -29,7 +20,15 @@
             <p><?= $dataResultLoos === 1 ? $dataResult : $data->getDataObject('pokemon', rand(1, 807))->name ?></p>
         </div>
     </div>
-    <a href="game.php">aa</a>
+    <a href="game.php" class="next__question">Next question</a>
+    <div class="win__div">
+        <h3>YOU WIN ! GREAT JOB</h3>
+        <a href="game.php" class="win__restart">Restart</a>
+    </div>
+    <div class="loose__div">
+        <h3>YOU LOOSE ! RESTART FOR A BETTER JOB</h3>
+        <a href="game.php" class="loose__restart">Restart</a>
+    </div>
 <?php
     include ('./includes/footer.php');
 ?>

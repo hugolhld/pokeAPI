@@ -136,3 +136,9 @@ footer p span
     background: #C4C4C4;
     padding: 2px;
 }
+
+
+.next__question
+{
+    display: none;
+}

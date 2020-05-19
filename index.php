@@ -1,7 +1,7 @@
 <?php
     include('./includes/config.php');
     include('./includes/header.php');
-    include('./apiConfig.php');
+    include('./includes/apiConfig.php');
     $data = new pokeAPI();
     $alhabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     $letterActive = empty($_GET['letter']) ? 'a' : $_GET['letter'];

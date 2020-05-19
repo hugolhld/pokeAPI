@@ -13,17 +13,17 @@ const clickButton = () =>
                 for(button of buttons)
                 {
                     button.style.background = 'red'
-    
+
                     if(button.getAttribute('data-result') == 1)
                     {
                         button.style.background = 'green'
                     }
                 }
-    
+
                 if(buttons[i].getAttribute('data-result') == 1)
                 {
                     console.log('win')
-    
+
                     win()
                 }
                 gamesCount()
@@ -40,7 +40,7 @@ const win = () =>
     {
         localStorage.setItem('score', 0)
     }
-    
+
     let score = localStorage.getItem('score')
     score = parseInt(score)
     score += 1
@@ -59,9 +59,6 @@ const win = () =>
 const winGame = (div) =>
 {
     nextQuestion.innerText = 'Recommencer'
-
-    document.querySelector('body').appendChild(nextQuestion)
-
 }
 
 const gamesCount = () =>
@@ -95,7 +92,6 @@ const gamesCount = () =>
     {
         localStorage.setItem('gameCount', gameCount)
     }
-
 }
 
 clickButton()

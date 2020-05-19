@@ -1,15 +1,17 @@
 <?php
     include('./includes/config.php');
     include('./includes/header.php');
-    include('./apiConfig.php');
+    include('./includes/apiConfig.php');
     $data = new pokeAPI;
-    $dataResult = $data->getDataObject('pokemon', rand(1, 807))->name;
+    $id = rand(1, 807);
+    $dataResult = $data->getDataObject('pokemon', $id)->name;
     $dataResultWin = rand(1,2);
     $dataResultLoos = $dataResultWin === 1 ? 2 : 1;
 ?>
 
     <div class="name">
         <h1><?= $dataResult ?></h1>
+        <img src="<?= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png" ?>" alt="pokemon random">
     </div>
 
     <div class="reponse">

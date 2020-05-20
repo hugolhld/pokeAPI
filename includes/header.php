@@ -10,7 +10,10 @@
 </head>
 <body>
     <header>
-        <a href="/"><h1>Pokédex</h1></a>
+        <div class="header__container">
+            <a href="/"><h1>Pokédex</h1></a>
+            <a href="game.php" class="header__button_game">Test your knowledges in Pokemon</a>
+        </div>
     </header>
     <main>
         <section class="section__form">

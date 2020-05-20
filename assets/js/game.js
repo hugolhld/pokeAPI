@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll('.response__choice')
-const nextQuestion = document.querySelector('.next__question')
+const nextQuestion = document.querySelector('.game__next__question')
 let buttonClickable = true
 
 const clickButton = () =>

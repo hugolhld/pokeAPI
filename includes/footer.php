@@ -1,6 +1,6 @@
     <footer>
         <p>
-            La page a mis <span><?= round(microtime(TRUE) - $time, 3) ?></span> secondes à charger
+            It took <span><?= round(microtime(TRUE) - $time, 3) ?></span> second<?= (round(microtime(TRUE) - $time, 3) <= 1.01) ? '' : 's' ?> to load the page
         </p>
     </footer>
     </main>

@@ -8,25 +8,24 @@
     $dataTest = $data->getDataObject('pokemon', $pokemonId.'/encounters');
 ?>
 
-        <section>
+    <section>
+        <div class="pokemon__container">
             <?php if($dataID): ?>
                 <h1><?= ucfirst($dataID->name) ?></h1>
-                <img src="<?= $dataID->sprites->front_default === null ? "https://pokeres.bastionbot.org/images/pokemon/$dataID->id.png" : $dataID->sprites->front_default ?>" alt="<?= $dataID->name ?>">
+                <img src="<?= "https://pokeres.bastionbot.org/images/pokemon/$dataID->id.png" ?>" alt="<?= $dataID->name ?>">
                 <h3>Type: <?= ucfirst($dataID->types[0]->type->name). ' / ID: '.$dataID->id ?></h3>
-                <table>
-                    <tr>
-                        <th>Abilities of <?= ucfirst($dataID->name) ?></th>
-                    </tr>
-                    <tr>
+                <div class="pokemon__abilities">
+                    <h3>Abilities of <?= ucfirst($dataID->name) ?></h3>
+                    <ul>
 
                         <?php foreach($dataID->abilities as $ability): ?>
 
-                            <td><?= $ability->ability->name ?></td>
+                            <li><?= ucwords(ucfirst(str_replace('-',' ',$ability->ability->name))) ?></li>
 
                         <?php endforeach; ?>
 
-                    </tr>
-                </table>
+                    </ul>
+                </div>
                 <table>
                     <tr>
 
@@ -47,49 +46,66 @@
 
                     </tr>
                 </table>
-                <div class="attack">
+                <div class="pokemon__attack">
                     <h3><?= ucfirst($dataID->name) ?>'s attack on all Pokemon confused</h3>
-                    <ul>
+                    <table>
 
                         <?php foreach($dataID->moves as $attack): ?>
-
-                            <li><?= $attack->move->name ?> --> <?= $data->getAttackDescription($attack->move->name) ?></li>
+                            
+                            <tr>
+                                <th><?= ucwords(ucfirst(str_replace('-', ' ',$attack->move->name))) ?></th>
+                                <td><?= $data->getAttackDescription($attack->move->name) ?></td>
+                            </tr>
 
                         <?php endforeach; ?>
 
-                    </ul>
+                    </table>
                 </div>
-                <div class="found">
+                <div class="pokemon__found">
                     <h3>For found the pokemon</h3>
                     <?php if($dataTest): ?>
 
                         <?php foreach($dataTest as $place): ?>
+                            
+                            <p>You can go at <span><?= ucwords(ucfirst(str_replace('-',' ',$place->location_area->name))) ?></span> in the Pokemon version 
+                            
+                            <?php $countVersion = count($place->version_details) ?>
+                            
+                                <?php foreach($place->version_details as $key => $pokemonVersion): ?>
 
-                            <h5><?= $place->location_area->name ?></h5>
-                            <p>In the pokemon version</p>
-                            <ul>
+                                    <?= ucfirst(str_replace('-', ' ', $pokemonVersion->version->name)) ?>
 
-                                <?php foreach($place->version_details as $pokemonVersion): ?>
+                                    <?php 
 
-                                    <li>
+                                        if(++$key === $countVersion - 1)
+                                        {
+                                            echo 'and';
+                                        }
+                                        else if(++$key === $countVersion + 1)
+                                        {
+                                            echo '.';
+                                        }
+                                        else
+                                        {
+                                            echo ',';
+                                        }
 
-                                        Pokemon <?= ucfirst($pokemonVersion->version->name) ?>
-
-                                    </li>
+                                    ?>
 
                                 <?php endforeach ?>
 
-                            </ul>
+                            GOOD LUCK !</p>
 
                         <?php endforeach; ?>
 
                     <?php endif; ?>
 
-                    <?= $dataTest ? null : 'Not result found for this pokemon' ?>
+                    <?= $dataTest ? null : 'Not result found for this pokemon 😔' ?>
                 </div>
             <?php endif; ?>
+            <?= $dataID ? null : 'Not result found for this pokemon, retry with a new name or ID 😔' ?>
+        </div>
             
-            <?= $dataID ? null : 'Not result found for this pokemon, retry with a new name or ID' ?>
-        </section>
+    </section>
 
 <?php include('./includes/footer.php'); ?>

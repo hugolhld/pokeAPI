@@ -293,15 +293,75 @@ button:focus
     border-bottom: none;
 }
 
-.pokemon__found p span
+.pokemon__found p span:first-child
 {
+    color: #2E2E2E;
     background: #c4c4c4;
     padding: 0 1%;
+}
+
+.pokemon__found p span
+{
+    color: rgb(197, 54, 54);
+    padding: 0 1%;
+}
+
+.game__container
+{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game__name
+{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game__name img
+{
+    width: 100%;
+}
+
+.game__response
+{
+    width: 50%;
+    padding: 5% 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.response__choice
+{
+    padding: 2.5% 5%;
+    border: 1px solid #2E2E2E;
+    transition: .3s;
+}
+
+.response__choice:hover
+{
+    background: #C4C4C4;
+    cursor: pointer;
 }
 
 .game__next__question
 {
     display: none;
+}
+
+.game__end_game_result
+{
+    width: 50%;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #2E2E2E;
+    padding: 10%;
+    top: 50vh;
 }
 
 .win__div

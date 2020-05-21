@@ -1,6 +1,6 @@
 <?php
     include('./includes/config.php');
-    include('./includes/header.php');
+    include('./components/header.php');
     include('./includes/apiConfig.php');
     $data = new pokeAPI();
     $alhabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -40,4 +40,4 @@
             </div>
         </section>
 
-<?php include('./includes/footer.php'); ?>
+<?php include('./components/footer.php'); ?>

@@ -1,6 +1,6 @@
 <?php
     include('./includes/config.php');
-    include('./includes/header.php');
+    include('./components/header.php');
     include('./includes/apiConfig.php');
     $data = new pokeAPI();
     $pokemonId = strtolower($_GET['id']);
@@ -12,7 +12,7 @@
         <div class="pokemon__container">
             <?php if($dataID): ?>
                 <h1><?= ucfirst($dataID->name) ?></h1>
-                <img src="<?= "https://pokeres.bastionbot.org/images/pokemon/$dataID->id.png" ?>" alt="<?= $dataID->name ?>">
+                <img src="<?= "https://pokeres.bastionbot.org/images/pokemon/$dataID->id.png" == null ? $dataID->sprites->front_default : "https://pokeres.bastionbot.org/images/pokemon/$dataID->id.png"  ?>" alt="<?= $dataID->name ?>">
                 <h3>Type: <?= ucfirst($dataID->types[0]->type->name). ' / ID: '.$dataID->id ?></h3>
                 <div class="pokemon__abilities">
                     <h3>Abilities of <?= ucfirst($dataID->name) ?></h3>
@@ -73,7 +73,7 @@
                             
                                 <?php foreach($place->version_details as $key => $pokemonVersion): ?>
 
-                                    <?= ucfirst(str_replace('-', ' ', $pokemonVersion->version->name)) ?>
+                                    <span> <?= ucfirst(str_replace('-', ' ', $pokemonVersion->version->name)) ?> </span>
 
                                     <?php 
 
@@ -108,4 +108,4 @@
             
     </section>
 
-<?php include('./includes/footer.php'); ?>
+<?php include('./components/footer.php'); ?>

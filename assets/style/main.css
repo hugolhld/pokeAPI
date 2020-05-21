@@ -55,6 +55,22 @@ header
     flex-direction: column;
 }
 
+.section__form a
+{
+    font-size: .7em;
+    padding: 1% 2.5%;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid #2E2E2E;
+    border-radius: 5vw;
+    transition: .3s;
+}
+
+.section__form a:hover
+{
+    background: rgb(184, 184, 184);
+}
+
 form
 {
     padding-top: 5%;
@@ -83,12 +99,18 @@ button
     border-radius: 30px;
     font-size: .7em;
     font-family: Pokemon;
+    transition: .3s;
 }
 
 button:focus
 {
     outline: none;
+}
+
+button:hover
+{
     background: rgb(184, 184, 184);
+    cursor: pointer;
 }
 
 .section__alphabet
@@ -358,10 +380,10 @@ button:focus
 {
     width: 50%;
     position: absolute;
-    background: #fff;
-    border: 1px solid #2E2E2E;
     padding: 10%;
     top: 50vh;
+    background: #fff;
+    border: 1px solid #2E2E2E;
 }
 
 .win__div

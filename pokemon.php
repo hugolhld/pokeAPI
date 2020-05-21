@@ -3,9 +3,12 @@
     include('./components/header.php');
     include('./includes/apiConfig.php');
     $data = new pokeAPI();
+    // Passe en lowercase ce qu'on recherche afin de ne pas avoir d'erreurs
     $pokemonId = strtolower($_GET['id']);
+    // Recupere les données du pokemon
     $dataID = $data->getDataObject('pokemon', $pokemonId);
-    $dataTest = $data->getDataObject('pokemon', $pokemonId.'/encounters');
+    // Recupere les données de où attraper les pokemon
+    $dataEncouters = $data->getDataObject('pokemon', $pokemonId.'/encounters');
 ?>
 
     <section>
@@ -18,14 +21,17 @@
                     <h3>Abilities of <?= ucfirst($dataID->name) ?></h3>
                     <ul>
 
+                        <!-- Recupere les abilités du pokémon -->
                         <?php foreach($dataID->abilities as $ability): ?>
 
+                            <!-- Ecris lisiblement les abilités en retirant dans les '-' inutiles -->
                             <li><?= ucwords(ucfirst(str_replace('-',' ',$ability->ability->name))) ?></li>
 
                         <?php endforeach; ?>
 
                     </ul>
                 </div>
+                <!-- Crée un tableau contant tout les stats de base du pokémon -->
                 <table>
                     <tr>
 
@@ -49,7 +55,7 @@
                 <div class="pokemon__attack">
                     <h3><?= ucfirst($dataID->name) ?>'s attack on all Pokemon confused</h3>
                     <table>
-
+                        <!-- Recupere toutes les attaques et leurs descriptions -->
                         <?php foreach($dataID->moves as $attack): ?>
                             
                             <tr>
@@ -63,12 +69,13 @@
                 </div>
                 <div class="pokemon__found">
                     <h3>For found the pokemon</h3>
-                    <?php if($dataTest): ?>
-
-                        <?php foreach($dataTest as $place): ?>
+                    <?php if($dataEncouters): ?>
+                        <!-- Recuepre tout les données sur les emplacment du pokémon selon les version des jeux -->
+                        <?php foreach($dataEncouters as $place): ?>
                             
                             <p>You can go at <span><?= ucwords(ucfirst(str_replace('-',' ',$place->location_area->name))) ?></span> in the Pokemon version 
                             
+                            <!-- Crée un variable pour avoir le nombre des jeux ou les pokemons se trouvent au meme endroit -->
                             <?php $countVersion = count($place->version_details) ?>
                             
                                 <?php foreach($place->version_details as $key => $pokemonVersion): ?>
@@ -77,6 +84,7 @@
 
                                     <?php 
 
+                                        // Utlise CountVersion pour savoir quand mettre un point, une virgule et de mettre le 'and'
                                         if(++$key === $countVersion - 1)
                                         {
                                             echo 'and';
@@ -99,10 +107,13 @@
                         <?php endforeach; ?>
 
                     <?php endif; ?>
-
-                    <?= $dataTest ? null : 'Not result found for this pokemon 😔' ?>
+                    
+                    <!-- Beaucoup de pokémons n'ont pas les 'encounters' de renseigné, alors une petite phrase au cas ou il n'y ait rien -->
+                    <?= $dataEncouters ? null : 'Not result found for this pokemon 😔' ?>
                 </div>
             <?php endif; ?>
+
+            <!-- si la recherche de pokemon est inexistante ou incorrecte -->
             <?= $dataID ? null : 'Not result found for this pokemon, retry with a new name or ID 😔' ?>
         </div>
             

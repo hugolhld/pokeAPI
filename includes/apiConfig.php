@@ -2,6 +2,7 @@
     class pokeAPI
     {
 
+        // Obtenir la decription des attack
         public function getAttackDescription($attack)
         {
             $data = $this->useCache("move/$attack/", true);
@@ -10,11 +11,11 @@
             return $data;
         }
 
+        // Crée un tableau avec tout les noms des pokémons classés alphabétiquemnt
         public function getDataAlphabeticIndex($limit, $letterActive)
         {
             $sortAlphabeticName =[];
-            $data = $this->callAPI("pokemon?limit=$limit/");
-            $data = json_decode($data);
+            $data = $this->useCache("pokemon?limit=$limit/", true);
             $dataArray = [];
 
             foreach($data->results as $key => $result)
@@ -26,16 +27,17 @@
                 asort($sortAlphabeticName);
             }
 
-            $this->useCache(/* string($sortAlphabeticName) */'test', false);
             return $sortAlphabeticName;
         }
 
+        // Obtiens toute la data d'un objet, que ça soit un pokemon, un item ou autre selon les paramètres
         public function getDataObject($type, $object)
         {
             $data = $this->useCache("$type/$object/", true);
             return $data;
         }
 
+        // Appel l'API avec en paramettre ce que l'on veut recuperer
         private function callAPI($type)
         {
             $curl = curl_init();
@@ -56,6 +58,7 @@
             return $data;
         }
 
+        // Crée un systeme de cache en envoyant les fichier dans un dossier nommé "cache" et retourne la data déjà passé par json_decode, utlise aussi la function callAPI pour ne pas avoir à appeler les deux fonctions à chaque fois
         private function useCache($type, $addAllObject)
         {
             $cacheKey = md5("https://pokeapi.co/api/v2/$type");

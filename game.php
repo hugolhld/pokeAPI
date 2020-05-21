@@ -4,7 +4,9 @@
     include('./includes/apiConfig.php');
     $data = new pokeAPI;
     $id = rand(1, 807);
+    // Cherche un pokemon aléatoire
     $dataResult = $data->getDataObject('pokemon', $id)->name;
+    // Chercher un nombre entre 1 et 2 pour savoir ou mettre la bonne réponse
     $dataResultWin = rand(1,2);
     $dataResultLoos = $dataResultWin === 1 ? 2 : 1;
 ?>
@@ -12,6 +14,7 @@
     <div class="game__container">
 
         <div class="game__name">
+            <h1>What's the name of this Pokemon ?</h1>
             <img src="<?= "https://pokeres.bastionbot.org/images/pokemon/$id.png" ?>" alt="pokemon random">
         </div>
 
@@ -24,6 +27,8 @@
             </div>
         </div>
 
+        <a href="game.php" class="game__next__question">Next question</a>
+
         <div class="game__score">
             <div class="score__game">
                 <h5>Question: <span>0</span> / 10</h5>
@@ -34,8 +39,6 @@
             </div>
         </div>
 
-        <a href="game.php" class="game__next__question">Next question</a>
-        
         <div class="game__end_game_result win__div">
             <h3>YOU WIN ! GREAT JOB</h3>
             <a href="game.php" class="win__restart">Restart</a>

@@ -23,11 +23,11 @@ const clickButton = () =>
             {
                 for(button of buttons)
                 {
-                    button.style.background = 'red'
+                    button.style.background = 'rgb(197, 54, 54)'
 
                     if(button.getAttribute('data-result') == 1)
                     {
-                        button.style.background = 'green'
+                        button.style.background = '#27ae60'
                     }
                 }
 
@@ -83,16 +83,13 @@ const gamesCount = () =>
 
     if(gameCount === 10)
     {
-        console.log('end')
         if(localStorage.score > 7)
         {
             document.querySelector('.win__div').style.display = 'block'
-
         }
         else
         {
             document.querySelector('.loose__div').style.display = 'block'
-            //loose
         }
         localStorage.clear()
     }

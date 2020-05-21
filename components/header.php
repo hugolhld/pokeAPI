@@ -1,3 +1,4 @@
+<!-- Lance un chrono pour savoir combien de temps la page met à charger -->
 <?php $time = microtime(TRUE) ?>
 
 <!DOCTYPE html>
@@ -22,5 +23,7 @@
                 <button>Search</button>
             </form>
             <h3>Or</h3>
+
+            <!-- Envoie sur une page pokemon.php aléatoire -->
             <a href="pokemon.php?id=<?= rand(0, 807) ?>">Random Pokemon</a>
         </section>

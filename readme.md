@@ -9,7 +9,7 @@ Une page d'accueil avec tout les pokemons triés alphabtiqument, avec la possibi
 
 - Des fonctions permettant d'automatiser l'appel de l'api
 - Une utlisation du cache, pas forcément la meilleur mais elle évite déjà les longs chargements
-- Un appel à une autre ressource que ```php $data->sprites->front_default ``` pour avoir une image de meilleur qualitée
+- Un appel à une autre ressource que ```$data->sprites->front_default ``` pour avoir une image de meilleur qualitée
 - Un mini jeu / quizz disponible
 - Faire une recherche de pokemon
 - Chercher un pokemon random
